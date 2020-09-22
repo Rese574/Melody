@@ -5,20 +5,30 @@ from .forms import *
 from .models import *
 
 # Create your views here.
+# Bolabola - dashboard and song registration
+# Sison - index or landing page and customer registration
 class MelodyIndexView(View):
 	def get(self, request):
 		return render(request, 'melody/index.html')
 
 class MelodyProductDashboardView(View):
 	def get(self, request):
-		return render(request, 'melody/productDashboard.html')
+		songs = Song.objects.all()
+		context={
+			'songs' : songs,
+		}
+		return render(request, 'melody/productDashboard.html', context)
 	def post(self, request):
 		if request.method == 'POST':
 			return render(request, 'melody/songRegister.html')
 
 class MelodyCustomerDashboardView(View):
 	def get(self, request):
-		return render(request, 'melody/customerDashboard.html')
+		customers = Customer.objects.all()
+		context = {
+			'customers' : customers,
+		}
+		return render(request, 'melody/customerDashboard.html', context)
 
 class MelodyCustomerRegistrationView(View):
 	def get(self, request):
