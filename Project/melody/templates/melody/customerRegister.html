@@ -31,7 +31,7 @@
   
   {% endblock headerinclude %}
 
- <form id="form1" method="POST" autocomplete="off" enctype="multipart/form-data">
+
       {% csrf_token %}
 
 <div class="image-container set-full-height" style="background-image: url({% static 'melody/img/bg5.png' %})">
@@ -71,6 +71,8 @@
 
             </div>
 
+            <form id="form1" method="POST" autocomplete="off" enctype="multipart/form-data">
+            	
                   <div class="tab-content">
                           <!--step 1 -->
                      <div class="tab-pane" id="step1">
