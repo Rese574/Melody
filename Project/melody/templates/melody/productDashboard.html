@@ -8,58 +8,60 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
     <!-- custom css -->
     <link rel="stylesheet" type="text/css" href="{% static 'melody/css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'melody/css/table.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{%static 'melody/css/sidebar.css' %}">
     <!-- css for datatable -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-
     <link src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js">
     <script type="text/javascript" src="{% static 'melody/js/filterDate.js' %}"></script>
 {% endblock headerinclude %}
+<!-- body -->
+<div class="container-fluid p-0">
+    <!-- start of row -->
+    <div class="row" id="body-row">
+        <!-- start of sidebar -->
+        <div id="sidebar-container" class="sidebar-expanded shadow">
+        <div class="img-circle"><img src="{% static 'melody/img/author1.png' %}" class="circle"></div>
+        <center><p style="color: white; margin-top: 5%; margin-bottom: 10%;">Welcome, Therese!!!</p></center>
+            <ul class="list-group">
+                <li class="list-group-item sidebar-separated-title d-flex">
+                    <small style="color: #D1D1D1;">MAIN MENU</small>
+                </li>
+                <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="ml-3 mr-3"><i class="material-icons">&#xe871;</i></span>Dashboard
+                            <span class="ml-3"><i class="material-icons">&#xe5c5;</i></span>
+                        </div>
+                </a>
+                <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="ml-3 mr-3"><i class="material-icons">&#xe853;</i></span>Profile
+                    </div>
+                </a>
+            </ul>
+        </div>
+        <!-- end of sidebar -->
 
-        <!-- start of navbar -->
-        <nav class="navbar fixed-top navbar-expand-lg shadow">
-            <div class="container">
-                <a class="navbar-brand" href="#" style="margin-left: -120px;">Melody</a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav" style="margin-left: 150px;">
-                        <li class="nav-item"><a class="nav-link" href="#">Customer Dashboard</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="#">Product Dashboard</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li> -->
-                    </ul>
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Username
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#"><i class="material-icons">&#xe8a6;</i><span style="display:inline-block; vertical-align: 5px; margin-left: 5px;"> Account</span></a>
-                                <hr>
-                                <a class="dropdown-item" href="#"><i class="material-icons">&#xe879;</i><span style="display:inline-block; vertical-align: 5px; margin-left: 5px;"> Log Out</span></a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>     
-        </nav>
-        <!-- end of navbar -->
-
-        <!-- start of page content -->
-        <div class="container-space" style="width: 1400px; margin-left: 4%;">
+        <!-- start of datatable -->
+        <div class="col">
+            <header>
+                <div class="row" style="margin-top: 1%;">
+                    <div class="logo-container"><img src="{% static 'melody/img/logo.png' %}" class="logo"></div>
+                    <div class="col" style="margin-top: 2%; margin-left: 1%;"><h2>MELODY</h2></div>
+                </div>       
+            </header>
+            <hr>
             <form id="form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %} <p align="right"><button type="submit" class="buttonAdd">Add Song</button></p>
             </form>
-            <!-- <p><button type="button" class=""></button></p> -->
             <p id="date_filter">
                 <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" id="datepicker_from" style="margin-left: 5px;"/>
                 <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" id="datepicker_to" style="margin-left: 5px;"/>
             </p>
-            <table class="table table-hover" id="data-table" style="width:100%">
+            <table class="table table-hover" id="data-table">
                 <thead>
                     <tr>
                         <th scope="col">Song Title</th>
@@ -80,7 +82,6 @@
                             <a data-toggle="modal" href="#" class="button" data-target="#modalDelete"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a></center>
                         </td>
                     </tr>
-
                     <!-- modal for View -->
                     <div class="modal fade" id="modalView-{{song.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
@@ -135,13 +136,14 @@
                     <!-- end of modal for View -->
                     {% endfor %}
                 </tbody>
-            </table>
-            
-        </div>   
-        <!--end of page content -->
-
+            </table>   
+        </div>
+        <!-- end of datatable -->
+    </div>
+    <!-- end of row -->
+</div>
+<!-- end of body -->
         
-
         <!-- modal for Delete -->
         <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -193,8 +195,7 @@
               </div>
             </div>
         </div>
-        <!-- end of modal for Delete -->
-        
+        <!-- end of modal for Delete -->   
 {% block footerinclude %}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
