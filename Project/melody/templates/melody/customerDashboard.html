@@ -62,12 +62,14 @@
             <table class="table table-hover" id="data-table" style="width:100%">
                 <thead>
                     <tr>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Birthdate</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Contact no.</th> 
-                        <th scope="col">Action</th>
+                        <center>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Birthdate</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Contact no.</th> 
+                            <th scope="col">Action</th>
+                        </center>  
                     </tr>
                 </thead>
                 <tbody>
@@ -97,37 +99,37 @@
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label>Customer Name</label>
-                                            <input type="text" class="form-control" placeholder="Firstname" value="">
+                                            <input type="text" class="form-control" placeholder="Firstname" value="{{customer.firstname}}">
                                         </div>
-                                        <div class="form-group col">
-                                            <input type="text" class="form-control" placeholder="Lastname" value="">
+                                        <div class="form-group col" style="margin-top: 32px;">
+                                            <input type="text" class="form-control" placeholder="Lastname" value="{{customer.lastname}}">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label>Birthday</label>
-                                            <input type="text" class="form-control" placeholder="Birthday" value="">
+                                            <input type="text" class="form-control" placeholder="Birthday" value="{{customer.birthday}}">
                                         </div>
                                         <div class="form-group col">
                                             <label>Address</label>
-                                            <input type="text" class="form-control" placeholder="Address" value="">
+                                            <input type="text" class="form-control" placeholder="Address" value="{{customer.address}}">
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" placeholder="Email" value="">
+                                            <input type="text" class="form-control" placeholder="Email" value="{{customer.email}}">
                                         </div>
                                         <div class="form-group col">
                                             <label>Contact no.</label>
-                                            <input type="text" class="form-control" placeholder="Contact no." value="">
+                                            <input type="text" class="form-control" placeholder="Contact no." value="{{customer.contact}}">
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn btn-outline-primary shadow">Update</button>
                             <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-primary shadow">Update</button>
                             </div>
                         </div>
                         </div>
@@ -153,39 +155,38 @@
                     <form style="margin-left: 4%; margin-right: 4%;">
                         <div class="form-row">
                             <div class="form-group col">
-                                <label>Song Title</label>
-                                <input type="text" class="form-control" placeholder="Song Title" value="">
+                                <label>Customer Name</label>
+                                <input type="text" class="form-control" placeholder="Firstname" value="">
                             </div>
-                            <div class="form-group col">
-                                <label>Date Registered</label>
-                                <input type="text" class="form-control" placeholder="Date Registered" value="">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col">
-                                <label>Artist(s)</label>
-                                <input type="text" class="form-control" placeholder="Artist(s)" value="">
-                            </div>
-                            <div class="form-group col">
-                                <label>Genre(s)</label>
-                                <input type="text" class="form-control" placeholder="Genre" value="">
+                            <div class="form-group col" style="margin-top: 32px;">
+                                <input type="text" class="form-control" placeholder="Lastname" value="">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col">
-                                <label>Song Writer(s)</label>
-                                <textarea class="form-control" rows="2" placeholder="SongWriter(s)"></textarea>
+                                <label>Birthday</label>
+                                <input type="text" class="form-control" placeholder="Birthday" value="">
                             </div>
                             <div class="form-group col">
-                                <label>Producer(s)</label>
-                                <textarea class="form-control" rows="2" placeholder="Producer(s)"></textarea>
-                            </div> 
+                                <label>Address</label>
+                                <input type="text" class="form-control" placeholder="Address" value="">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Email</label>
+                                <input type="text" class="form-control" placeholder="Email" value="">
+                            </div>
+                            <div class="form-group col">
+                                <label>Contact no.</label>
+                                <input type="text" class="form-control" placeholder="Contact no." value="">
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer justify-content-center">
-                  <button type="button" class="btn btn-outline-danger shadow">Delete</button>
                   <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-outline-danger shadow">Delete</button>
                 </div>
               </div>
             </div>
