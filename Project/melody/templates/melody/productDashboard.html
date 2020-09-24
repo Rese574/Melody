@@ -42,7 +42,7 @@
                             </div>
                     </a>
                     <div class="dropdown-container">
-                        <a href="#" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i class="material-icons"  style="display: inline-block; vertical-align: -5px;">&#xe7fb;</i></span>Customer</a>
+                        <a href="{% url 'melody:melody_customerDashboard_view' %}" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i class="material-icons"  style="display: inline-block; vertical-align: -5px;">&#xe7fb;</i></span>Customer</a>
                         <a href="#" class="bg-dark list-group-item list-group-item-action flex-column"><span class="ml-5 mr-2"><i style='font-size:24px' class='fab'>&#xf1be;</i></span>Product</a>
                     </div>
                     <a href="#" class="bg-dark list-group-item list-group-item-action flex-column" style="font-size: 1.1rem;">
@@ -70,7 +70,7 @@
                 </div>       
             </header>
             <hr class="line">
-            <p align="right"><button type="button" class="buttonAdd" href="">Add Song</button></p>
+            <p align="right"><a type="button" class="buttonAdd" href="{% url 'melody:melody_songRegistration_view' %}">Add Song</a></p>
             <p id="date_filter">
                 <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" id="datepicker_from" style="margin-left: 5px;"/>
                 <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" id="datepicker_to" style="margin-left: 5px;"/>
