@@ -34,9 +34,10 @@ $(document).ready(function(){
 		      required: true,
 		      minlength: 3
 		    },
-		    email: {
+		    contact: {
 		      required: true,
-		      minlength: 3,
+		      minlength: 11,
+              maxlength: 11,
 		    }
         }
 	});
