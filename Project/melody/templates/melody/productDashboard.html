@@ -69,10 +69,8 @@
                     <div class="col" style="margin-top: 2%;"><h3>PRODUCT DASHBOARD</h3></div>
                 </div>       
             </header>
-           <hr class="line">
-            <form id="form1" action="" method="POST" autocomplete="off" enctype="multipart/form-data">
-                {% csrf_token %} <p align="right"><button type="submit" class="buttonAdd">Add Song</button></p>
-            </form>
+            <hr class="line">
+            <p align="right"><button type="button" class="buttonAdd" href="">Add Song</button></p>
             <p id="date_filter">
                 <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" id="datepicker_from" style="margin-left: 5px;"/>
                 <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" id="datepicker_to" style="margin-left: 5px;"/>
