@@ -18,9 +18,6 @@ class MelodyProductDashboardView(View):
 			'songs' : songs,
 		}
 		return render(request, 'melody/productDashboard.html', context)
-	def post(self, request):
-		if request.method == 'POST':
-			return render(request, 'melody/songRegister.html')
 
 class MelodyCustomerDashboardView(View):
 	def get(self, request):
