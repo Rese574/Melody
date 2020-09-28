@@ -32,7 +32,7 @@
   {% endblock headerinclude %}
 
 
-      {% csrf_token %}
+      
 
 <div class="image-container set-full-height" style="background-image: url({% static 'melody/img/bg5.png' %})">
 
@@ -44,9 +44,7 @@
             <!--      Wizard container        -->
       <div class="wizard-container" >
      
-
                 <div class="card wizard-card" data-color="violet" id="wizardProfile">
-                    <form action="" method="">
                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
                       <div class="wizard-header">
@@ -72,7 +70,7 @@
             </div>
 
             <form id="form1" method="POST" autocomplete="off" enctype="multipart/form-data">
-            	
+            	{% csrf_token %}
                   <div class="tab-content">
                           <!--step 1 -->
                      <div class="tab-pane" id="step1">
@@ -102,7 +100,7 @@
                                     <div class="col-sm-3 col-sm-offset-1">
                                         <div class="form-group">
                                             <label>Birthdate<small>(required)</small></label>
-                                            <input name="birthday" type="date" >
+                                            <input name="birthday" type="date" required="birthday">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 col-sm-offset-1">
@@ -123,7 +121,7 @@
                                   <div class="col-sm-6 col-sm-offset-1">
                                       <div class="form-group">
                                           <label>Password <small>(required)</small></label>
-                                        <input name="password" type="password" class="form-control" placeholder="***************" required="password" minlength="8">
+                                        <input name="password" type="password" class="form-control" placeholder="***************" required="password" minlength="8" maxlength="15">
                                       </div>
                                   </div>
                                 </div>
@@ -172,8 +170,6 @@
 
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                             <!-- Step 3-->
@@ -496,7 +492,6 @@
                             </div>
                             <!-- End of steps -->
                           </div>
-                        </form>
 
                         <div class="wizard-footer height-wizard">
                             <div class="pull-right">
