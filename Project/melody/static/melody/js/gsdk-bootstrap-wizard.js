@@ -36,12 +36,14 @@ $(document).ready(function(){
 		    },
 		    contact: {
 		      required: true,
-		      minlength: 11,
-              pattern: [0-9]+,
-		    }
+              maxlength: 11
+		    },
         }
 	});
-
+    // for contact
+    // $("#contact").keyup(function() {
+    //     $("#contact").val(this.value.match(/[0-9]*/));
+    // });
     // Wizard Initialization
   	$('.wizard-card').bootstrapWizard({
         'tabClass': 'nav nav-pills',

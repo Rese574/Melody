@@ -247,7 +247,7 @@
                                    <div class="col-sm-5 col-sm-offset-1">
                                          <div class="form-group">
                                             <label>Contact Info <small>Mobile no.</small></label>
-                                            <input type="text" name="contact" class="form-control" placeholder="Mobile no." maxlength="11" >
+                                            <input type="number" name="contact" class="form-control" placeholder="Mobile no." onkeypress="if (this.value.length==11) {return false}">
                                           </div>
                                     </div>
                                     <div class="col-sm-5">
