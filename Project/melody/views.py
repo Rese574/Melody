@@ -48,14 +48,14 @@ class MelodyProductDashboardView(View):
 			return redirect('melody:melody_productDashboard_view')
 
 class MelodyCustomerDashboardView(View):
-	def is_valid_queryparam(param):
-		return param != '' and param is not None
+	# def is_valid_queryparam(param):
+	# 	return param != '' and param is not None
 
-		if is_valid_queryparam(customerateMin):
-			customers = customers.filter(date__gte=customerDateMin)
+	# 	if is_valid_queryparam(customerateMin):
+	# 		customers = customers.filter(date__gte=customerDateMin)
 
-		if is_valid_queryparam(customerDateMax):
-			customers = customers.filter(date__lt=customerDateMax)
+	# 	if is_valid_queryparam(customerDateMax):
+	# 		customers = customers.filter(date__lt=customerDateMax)
 
 	def get(self, request):
 		customers = Customer.objects.all()
