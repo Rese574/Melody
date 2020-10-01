@@ -37,6 +37,7 @@ $(document).ready(function(){
 		    contact: {
 		      required: true,
 		      minlength: 11,
+              pattern: [0-9]+,
 		    }
         }
 	});
