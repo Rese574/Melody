@@ -24,6 +24,13 @@
         input.display{background-color: white; padding: 2%; width: 350px; border-top: hidden; border-left: hidden; border-right: hidden; border-width: 1px;}
         .no-outline:focus{outline: none;}
 </style>
+<style>
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  /*margin: 0;*/ 
+}
+</style>
 {% endblock headerinclude %}
 <!-- body -->
     <div class="container-fluid p-0">
@@ -145,7 +152,7 @@
                                             </div>
                                             <div class="form-group col">
                                                 <label>Contact no.</label>
-                                                <input type="text" class="form-control" placeholder="Contact no." name="customer-contact" value="{{customer.contact}}">
+                                                <input type="number" class="form-control" placeholder="Contact no." name="customer-contact" value="{{customer.contact}}" onkeypress="if (this.value.length==11) {return false}">
                                             </div>
                                         </div>
                                     </div>
