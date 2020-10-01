@@ -21,6 +21,8 @@
         .dropdown-container:active{background-color: #262626;}.logo-container{ width: 50px; height: 50px; margin-left: 3%;}
         .line{ height:2px;border-width:0;color:gray;background-color:gray;}a.buttonAdd:active, a.buttonAdd:hover {text-decoration: none;color: white; background-color: #6b22ff;}
         a.buttonAdd{background-color: #8a50ff;}.table{text-align: center;}
+        input.display{background-color: white; padding: 2%; width: 350px; border-top: hidden; border-left: hidden; border-right: hidden;border-width: 1px;}
+        .no-outline:focus{outline: none;}
 </style>
 {% endblock headerinclude %}
 <!-- body -->
@@ -70,11 +72,11 @@
                 </div>       
             </header>
             <hr class="line">
-            <p align="right"><a type="button" class="buttonAdd" href="{% url 'melody:melody_songRegistration_view' %}">Add Song</a></p>
-            <p id="date_filter">
+            <p align="right" style="margin-bottom: 2%;"><a type="button" class="buttonAdd" href="{% url 'melody:melody_songRegistration_view' %}" >Add Song</a></p>
+            <!-- <p id="date_filter">
                 <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" name="productDateMin" style="margin-left: 5px;"/>
                 <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" name="productDateMax" style="margin-left: 5px;"/>
-            </p>
+            </p> -->
             <!-- start of datatable -->
             <table class="table table-hover" id="data-table">
                 <thead>
@@ -171,32 +173,32 @@
                                     <input type="text" name="song-id" value = {{song.id}} hidden>
                                     <div class="row">
                                         <div class="form-group col">
-                                            <label>Song Title</label>
-                                            <input type="text" class="form-control" placeholder="Song Title" value="{{song.songtitle}}">
+                                            <label>Song Title</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.songtitle}}" readonly>
                                         </div>
                                         <div class="form-group col">
-                                            <label>Date Registered</label>
-                                            <input type="text" class="form-control" placeholder="Date Registered" value="{{song.dateRelease}}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="form-group col">
-                                            <label>Artist(s)</label>
-                                            <input type="text" class="form-control" placeholder="Artist(s)" value="{{song.artist}}">
-                                        </div>
-                                        <div class="form-group col">
-                                            <label>Genre(s)</label>
-                                            <input type="text" class="form-control" placeholder="Genre" value="{{song.genre}}">
+                                            <label>Date Registered</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.dateRelease}}" readonly>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col">
-                                            <label>Song Writer(s)</label>
-                                            <textarea class="form-control" rows="2" placeholder="SongWriter(s)">{{song.songwriter}}</textarea>
+                                            <label>Artist(s)</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.artist}}" readonly>
                                         </div>
                                         <div class="form-group col">
-                                            <label>Producer(s)</label>
-                                            <textarea class="form-control" rows="2" placeholder="Producer(s)">{{song.producer}}</textarea>
+                                            <label>Genre(s)</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.genre}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <label>Song Writer(s)</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.songwriter}}" readonly>
+                                        </div>
+                                        <div class="form-group col">
+                                            <label>Producer(s)</label><br>
+                                            <input type="text" class="display no-outline" value="{{song.producer}}" readonly>
                                         </div> 
                                     </div>
                                 </div>

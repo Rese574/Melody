@@ -13,14 +13,14 @@ class MelodyIndexView(View):
 		return render(request, 'melody/index.html')
 
 class MelodyProductDashboardView(View):
-	def is_valid_queryparam(param):
-		return param != '' and param is not None
+	# def is_valid_queryparam(param):
+	# 	return param != '' and param is not None
 
-		if is_valid_queryparam(productDateMin):
-			songs = songs.filter(date__gte=productDateMin)
+	# 	if is_valid_queryparam(productDateMin):
+	# 		songs = songs.filter(date__gte=productDateMin)
 
-		if is_valid_queryparam(productDateMax):
-			songs = songs.filter(date__lt=productDateMax)
+	# 	if is_valid_queryparam(productDateMax):
+	# 		songs = songs.filter(date__lt=productDateMax)
 
 	def get(self, request):
 		songs = Song.objects.all()
