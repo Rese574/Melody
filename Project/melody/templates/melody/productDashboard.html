@@ -72,8 +72,8 @@
             <hr class="line">
             <p align="right"><a type="button" class="buttonAdd" href="{% url 'melody:melody_songRegistration_view' %}">Add Song</a></p>
             <p id="date_filter">
-                <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" id="datepicker_from" style="margin-left: 5px;"/>
-                <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" id="datepicker_to" style="margin-left: 5px;"/>
+                <span id="date-label-from" class="date-label">From: </span><input class="date_range_filter date" type="date" name="productDateMin" style="margin-left: 5px;"/>
+                <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:<input class="date_range_filter date" type="date" name="productDateMax" style="margin-left: 5px;"/>
             </p>
             <!-- start of datatable -->
             <table class="table table-hover" id="data-table">

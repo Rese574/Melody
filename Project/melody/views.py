@@ -13,6 +13,15 @@ class MelodyIndexView(View):
 		return render(request, 'melody/index.html')
 
 class MelodyProductDashboardView(View):
+	def is_valid_queryparam(param):
+		return param != '' and param is not None
+
+		if is_valid_queryparam(productDateMin):
+			songs = songs.filter(date__gte=productDateMin)
+
+		if is_valid_queryparam(productDateMax):
+			songs = songs.filter(date__lt=productDateMax)
+
 	def get(self, request):
 		songs = Song.objects.all()
 		context={
@@ -38,8 +47,16 @@ class MelodyProductDashboardView(View):
 				print('record deleted')
 			return redirect('melody:melody_productDashboard_view')
 
-
 class MelodyCustomerDashboardView(View):
+	def is_valid_queryparam(param):
+		return param != '' and param is not None
+
+		if is_valid_queryparam(customerateMin):
+			customers = customers.filter(date__gte=customerDateMin)
+
+		if is_valid_queryparam(customerDateMax):
+			customers = customers.filter(date__lt=customerDateMax)
+
 	def get(self, request):
 		customers = Customer.objects.all()
 		context = {
