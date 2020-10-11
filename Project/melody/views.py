@@ -4,14 +4,17 @@ from django.http import HttpResponse
 from django.views.generic import View
 from .forms import *
 from .models import *
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 # Bolabola - dashboard and song registration
 # Sison - index or landing page and customer registration
 class MelodyIndexView(View):
 	def get(self, request):
+		request.session['username'] = 'email'
+		request.session['password'] = 'password'
 		return render(request, 'melody/index.html')
-
+		
 class MelodyProductDashboardView(View):
 	# def is_valid_queryparam(param):
 	# 	return param != '' and param is not None

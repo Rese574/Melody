@@ -15,6 +15,7 @@ class Customer(models.Model):
 
 class Song(models.Model):
     songtitle = models.CharField(max_length = 100)
+    songImage = models.ImageField(null=True, blank=True, upload_to="img/")
     genre = models.CharField(max_length = 100)
     artist = models.CharField(max_length = 100)
     dateRelease = models.DateField()
