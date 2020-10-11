@@ -21,7 +21,7 @@ class Song(models.Model):
     dateRelease = models.DateField()
     producer = models.CharField(max_length = 100)
     songwriter = models.CharField(max_length = 100)
-    coverphoto = models.ImageField(upload_to='images', null=True)
+    # coverphoto = models.ImageField(upload_to='images', null=True, blank=True)
 
     class Meta:
         db_table = "Song"

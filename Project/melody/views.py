@@ -43,10 +43,10 @@ class MelodyProductDashboardView(View):
 				genre = request.POST.get("song-genre")
 				writers = request.POST.get("song-writer")
 				producer = request.POST.get("song-producer")
-				img = request.FILES["coverphoto"]
-				print(img)
+				# img = request.FILES["coverphoto"]
+				# print(img)
 				update_song = Song.objects.filter(id = sid).update(songtitle = title, genre = genre, artist = artist, 
-								dateRelease = date, producer = producer, songwriter = writers, coverphoto = img)
+								dateRelease = date, producer = producer, songwriter = writers)
 				print(update_song)
 			elif 'btnDelete' in request.POST:
 				sid = request.POST.get("song-id")
@@ -138,10 +138,10 @@ class MelodySongRegistrationView(View):
 			date = request.POST.get("dateRelease")
 			producer = request.POST.get("producer")
 			songwriter = request.POST.get("songwriter")
-			img = request.FILES["coverphoto"]
-			print(img)
+			# img = request.FILES["coverphoto"]
+			# print(img)
 			form = Song(songtitle = title, genre = genre, artist = artist, dateRelease = date, producer = producer, 
-						songwriter = songwriter,  coverphoto = img)
+						songwriter = songwriter)
 			form.save()
 			return redirect('melody:melody_productDashboard_view')
 		else:
