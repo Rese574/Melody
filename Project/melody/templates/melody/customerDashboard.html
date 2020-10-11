@@ -22,14 +22,10 @@
         .logo-container{ width: 50px; height: 50px; margin-left: 3%;}a.buttonAdd:active, a.buttonAdd:hover {text-decoration: none;color: white; background-color: #6b22ff;}
         .table{text-align: center;}a.buttonAdd{background-color: #8a50ff;}
         input.display{background-color: white; padding: 2%; width: 350px; border-top: hidden; border-left: hidden; border-right: hidden; border-width: 1px;}
-        .no-outline:focus{outline: none;}
-</style>
-<style>
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  /*margin: 0;*/ 
-}
+        .no-outline:focus{outline: none;} input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none;  /*margin: 0;*/ }
+
+        .btn{border-radius: 50px; padding-right: 18px; padding-left: 18px;}
+        .btn:hover{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); transition: 300ms;}
 </style>
 {% endblock headerinclude %}
 <!-- body -->
@@ -38,8 +34,14 @@ input[type=number]::-webkit-outer-spin-button {
         <div class="row" id="body-row">
             <!-- start of sidebar -->
             <div id="sidebar-container" class="sidebar-expanded shadow">
-            <div class="img-circle"><img src="{% static 'melody/img/author1.png' %}" class="circle"></div>
-            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, Therese!!!</p></center>
+            <div class="img-circle">
+                {% if user.profilepicture.url is not null %}
+                <img src="{{user.profilepicture.url}}" class="circle">
+                {% else %}
+                <img src="{% static 'melody/img/default-avatar.png' %}" class="circle">
+                {% endif %}
+            </div>
+            <center><p style="color: #D1D1D1;; margin-top: 5%; margin-bottom: 10%;">Welcome, {{user.firstname}}!!!</p></center>
                 <ul class="list-group">
                     <li class="list-group-item sidebar-separated-title d-flex">
                         <small style="color: #D1D1D1;">MAIN MENU</small>
@@ -80,15 +82,21 @@ input[type=number]::-webkit-outer-spin-button {
                     </div>       
                 </header>
                <hr class="line">
-               <p align="right" style="margin-bottom: 2%;"><a type="button" class="buttonAdd" href="{% url 'melody:melody_customerRegistration_view' %}">Add Customer</a></p>
-                
-            <!-- <span id="date-label-from" class="date-label">From: </span>
-            <input class="date_range_filter date" type="date" id="customerDateMin" name="customerDateMin" style="margin-left: 5px;"/>
-            <span id="date-label-to" class="date-label" style="margin-left: 20px;">To:
-            <input class="date_range_filter date" type="date" id="customerDateMax" name="customerDateMax" style="margin-left: 5px;"/>
-            <button type="submit" class="btn btn-primary">Search</button> -->
-                <!-- start of datatable -->
-                <table class="table table-hover" id="data-table">
+               <p>
+                <form id="date-filter" name="date-filter" method="POST">
+                    {% csrf_token %}
+                <span class="date-label">From: </span><input type="date" name = "datepicker_from" id="datepicker_from" style="margin-left: 5px;" value="">
+                <span class="date-label" style="margin-left: 20px;">To:<input type="date" name = "datepicker_to" id="datepicker_to" style="margin-left: 5px;" value="">
+                <span style="display:inline-block; vertical-align: 2px; margin-left: 10px;"><button type="submit" class="btn btn-outline-primary" id="btnFilter" name="btnFilter">Filter</button></span>
+                <span style="display:inline-block; vertical-align: 2px; margin-left: 5px;"><a type="button" class="btn btn-outline-secondary" href="{% url 'melody:melody_customerDashboard_view' %}">Refresh</a></span>
+                 <!-- <button type="submit" class="btn-Add" id="btnPlaylist" name="btnPlaylist">Add to Playlist</button> -->
+            </form>
+            </p>
+            <p align="right">
+                <!-- <span style="display:inline-block; vertical-align: 5px; margin-right: 10px;"><button type="button" class="btn btn-Excel" onclick="exportToExcel('data-table')">Export to Excel</button></span> -->
+                <a type="button" class="btn-Add" href="{% url 'melody:melody_customerRegistration_view' %}"><i class="material-icons" style="font-size: 18px;">&#xe148;</i><span class="txt">Add Customer</span></a> 
+            </p>
+                <table class="table table-hover shadow" id="data-table">
                     <thead>
                         <tr>
                             <th scope="col">First Name</th>
@@ -148,7 +156,7 @@ input[type=number]::-webkit-outer-spin-button {
                                         <div class="row">
                                             <div class="form-group col">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" placeholder="Email" name="customer-email" value="{{customer.email}}">
+                                                <input type="email" class="form-control" placeholder="Email" name="customer-email" value="{{customer.email}}">
                                             </div>
                                             <div class="form-group col">
                                                 <label>Contact no.</label>
