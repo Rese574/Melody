@@ -9,6 +9,7 @@ class Customer(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length = 15)
     contact = models.CharField(max_length = 11)
+    profilepicture = models.ImageField(upload_to='images', null=True)
     
     class Meta:
         db_table = "Customer"
@@ -21,6 +22,7 @@ class Song(models.Model):
     dateRelease = models.DateField()
     producer = models.CharField(max_length = 100)
     songwriter = models.CharField(max_length = 100)
+    coverphoto = models.ImageField(upload_to='images', null=True)
 
     class Meta:
         db_table = "Song"
