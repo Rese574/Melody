@@ -12,16 +12,12 @@
     <link rel="stylesheet" type="text/css" href="{%static 'melody/css/form.css'%}">
     <!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script> -->
     <!-- <script src="{% static 'melody/js/jquery.validate.min.js' %}"></script> -->
-    <script type="text/javascript" src="{% static 'melody/js/validateMusic.js' %}"></script>
+    <script type="text/javascript" src="{% static 'melody/js/requiredFields.js' %}"></script>
     <style>
         a,a:active,a:focus, a:hover{ text-decoration: none; color: white; }
         .btn-secondary{text-transform: uppercase; font-size: 20px; margin-right: 4%; margin-left: 27%;}
         .register-img{ width: 200px; margin-top: 35%;} .buttonAdd{background-color: #8a50ff;}.buttonAdd:hover{color: white; background-color: #6b22ff;}
         .validate{color: red; font-size: 13px; margin-left: 5%;}
-        .cover-photo{width: 220px; height: 240px; border-radius: 5px; margin-left: 10%; margin-bottom: 3%;}.cover{width: 100%; height: 100%; border-radius: 5px; }
-        .img-container{position: relative;}
-        .txt-overlay{ position: absolute; bottom: 0; background: rgb(0, 0, 0); background: rgba(0, 0, 0, 0.5); /* Black see-through */color: #f1f1f1;transition: .5s ease; opacity:0; color: white; padding: 2px; padding-top: 10px; text-align: center; margin-left: 10%; width: 74%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;} 
-        .img-container:hover .txt-overlay{opacity: 1;}
     </style>
 {% endblock headerinclude %}
 
@@ -32,7 +28,7 @@
                 <div class="row">
                     <!-- left side of the registration form -->
                     <div class="col-md-3 register-left">
-                        <img src="{%static 'melody/img/pic1.png'%}" class="register-img" style="margin-top: 70%;">
+                        <img src="{%static 'melody/img/pic1.png'%}" class="register-img">
                         <p></p>
                         <p>Click here to <a href="{% url 'melody:melody_productDashboard_view' %}">Dashboard</a></p>
                     </div>
@@ -45,40 +41,35 @@
                         <div class="row register-form">
                             <!-- left side of the form -->
                             <div class="col-md-6">
-                                <div class="img-container">
-                                    <div class="cover-photo"><img src="{% static 'melody/img/default-coverphoto.png' %}" class="cover" id="output"></div>
-                                    <div class="txt-overlay"><label for="coverphoto" style="cursor: pointer;">Upload Image</label></div>
-                                    <input type="file"  accept="image/*" name="coverphoto" id="coverphoto" style="display: none;"  onchange="loadFile(event)">
-                                <!-- <label for="file" style="cursor: pointer; margin-top: 10px; margin-left: 22%;">Upload Image</label>                                  -->
-                                </div>
                                 <div class="form-group">
                                     <label>Song Title:</label>
                                     <input name ="songtitle" id="songtitle" type="text" placeholder="Song Title" class="form-control">
                                     <span id="reqSongTitle" class="validate"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Date Release:</label>
-                                    <input name ="dateRelease" type="date" class="form-control" id="dateRelease">
-                                    <span id="reqDate" class="validate"></span>
-                                </div>   
-                            </div>
-                            <!-- left side of the form, ends here -->
-
-                            <!-- right side of the form -->
-                            <div class="col-md-6" style="margin-top: 5%;">
-                                <div class="form-group">
-                                    <label>Artist(s):</label>
-                                    <input name ="artist" type="artist" id="artist" class="form-control" placeholder="Artist(s)">
-                                    <span id="reqArtist" class="validate"></span>
-                                </div>
-                                <div class="form-group">
                                     <label>Genre(s):</label>
-                                    <input name ="genre" type="text" class="form-control"  placeholder="Genre">
-                                </div>                               
+                                    <input name ="genre" id="genre" type="text" class="form-control"   placeholder="Genre">
+                                    <span id="reqGenre" class="validate"></span>
+                                </div>
                                 <div class="form-group">
                                     <label>Song Writer(s):</label>
                                     <textarea name ="songwriter" class="form-control" rows="2" placeholder="Song Writer(s)"></textarea>
                                 </div> 
+                            </div>
+                            <!-- left side of the form, ends here -->
+
+                            <!-- right side of the form -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Artist(s):</label>
+                                    <input name ="artist" type="artist" id="artist" class="form-control" placeholder="Artist(s)">
+                                    <span id="reqArtist" class="validate"></span>
+                                </div>                                
+                                <div class="form-group">
+                                    <label>Date Release:</label>
+                                    <input name ="dateRelease" type="date" class="form-control" id="dateRelease">
+                                    <span id="reqDate" class="validate"></span>
+                                </div>                               
                                 <div class="form-group">
                                     <label>Producer(s):</label>
                                     <textarea name ="producer" class="form-control" rows="2" placeholder="Producer(s)"></textarea>
@@ -96,11 +87,4 @@
         </form>
         <!-- end of registration form -->
 {% block footerinclude %}
-<!-- <script type="text/javascript" src="{% static 'melody/js/dateRegister.js' %}"></script> -->
-<script type="text/javascript">
-    var loadFile = function(event) {
-        var image = document.getElementById('output');
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
 {% endblock footerinclude %}
