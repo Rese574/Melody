@@ -13,7 +13,7 @@ class MelodyIndexView(View):
 	def get(self, request):
 		return render(request, 'melody/index.html')
 	def post(self, request):
-		global userID
+		# global userID
 		if request.method == 'POST':
 			if 'btnLogin'in request.POST:
 				email = request.POST.get("email")
@@ -24,7 +24,7 @@ class MelodyIndexView(View):
 
 class MelodyProductDashboardView(View):
 	def get(self, request):
-		global userID
+		# global userID
 		songs = Song.objects.all()
 		user = Customer.objects.get(id = userID)
 		context={
@@ -34,7 +34,7 @@ class MelodyProductDashboardView(View):
 		return render(request, 'melody/productDashboard.html', context)
 	def post(self, request):
 		if request.method == 'POST':
-			global userID
+			# global userID
 			if 'btnUpdate' in request.POST:
 				sid = request.POST.get("song-id")
 				title = request.POST.get("song-title")
@@ -66,7 +66,7 @@ class MelodyProductDashboardView(View):
 
 class MelodyCustomerDashboardView(View):
 	def get(self, request):
-		global userID
+		# global userID
 		customers = Customer.objects.all()
 		user = Customer.objects.get(id = userID)
 		context = {
@@ -75,7 +75,7 @@ class MelodyCustomerDashboardView(View):
 		}
 		return render(request, 'melody/customerDashboard.html', context)
 	def post(self, request):
-		global userID
+		# global userID
 		if request.method == 'POST':
 			if 'btnUpdate' in request.POST:
 				cid = request.POST.get("customer-id")
@@ -117,7 +117,7 @@ class MelodyCustomerRegistrationView(View):
 			email = request.POST.get("email")
 			password = request.POST.get("password")
 			contact = request.POST.get("contact")
-			img = request.FILES["profilepicture"]
+			img = request.FILES('profilepicture',False)
 			form = Customer(firstname = fname, lastname = lname, birthday = bday, address = add, email = email,
 							password = password, contact = contact, profilepicture = img)
 			form.save()
