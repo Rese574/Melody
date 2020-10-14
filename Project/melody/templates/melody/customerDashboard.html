@@ -162,6 +162,7 @@
                     </thead>
                     <tbody>
                         {% for customer in customers %}
+                            {% if customer.isDeleted is False %}
                         <tr>
                             <td>{{customer.firstname}}</td>
                             <td>{{customer.lastname}}</td>
@@ -294,6 +295,7 @@
                             </div>
                         </div>
                         <!-- end of modal for Delete -->
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>  
