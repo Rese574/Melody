@@ -25,6 +25,42 @@
 
         .btn{border-radius: 50px; padding-right: 18px; padding-left: 18px;}
         .btn:hover{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); transition: 300ms;}
+thead{
+    background-color: #5900B3; 
+    color: white; 
+    text-align: center;
+}
+
+.center-txt{
+    text-align: center;
+}
+
+.btn-Add:hover{
+    background-color: #5900B3; 
+    color: white; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    transition: 300ms;
+}
+
+.btn-Add{
+    background-color: white; 
+    color: #5900B3; 
+    padding-top: 6px; 
+    padding-bottom: 6px; 
+    padding-left:14px; 
+    padding-right: 18px; 
+    font-size: 17px; 
+    border-style:solid; 
+    border-color: #5900B3; 
+    border-radius: 50px; 
+    border-width: 1px;
+}
+
+.txt{
+    display:inline-block; 
+    vertical-align: 3px; 
+    margin-left: 5px;
+}
 </style>
 {% endblock headerinclude %}
 <!-- body -->
@@ -87,7 +123,7 @@
                 <span class="date-label" style="margin-left: 20px;">To:<input type="date" name = "datepicker_to" id="datepicker_to" style="margin-left: 5px;" value="">
                 <span style="display:inline-block; vertical-align: 2px; margin-left: 10px;"><button type="submit" class="btn btn-outline-primary" id="btnFilter" name="btnFilter">Filter</button></span>
                 <span style="display:inline-block; vertical-align: 2px; margin-left: 5px;"><a type="button" class="btn btn-outline-secondary" href="{% url 'melody:melody_productDashboard_view' %}">Refresh</a></span>
-                 <!-- <button type="submit" class="btn-Add" id="btnPlaylist" name="btnPlaylist">Add to Playlist</button> -->
+                 
             </form>
             </p>
             <p align="right">
