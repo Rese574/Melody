@@ -109,6 +109,7 @@
                     </thead>
                     <tbody>
                         {% for customer in customers %}
+                            {% if customer.isDeleted is False %}
                         <tr>
                             <td>{{customer.firstname}}</td>
                             <td>{{customer.lastname}}</td>
@@ -129,7 +130,7 @@
                                     <span aria-hidden="true" style="color: white;">&times;</span>
                                 </button>
                                 </div>
-                                <form id="updateSong" method="POST">
+                                <form id="updateSong" method="POST" enctype="multipart/form-data">
                                 {% csrf_token%}
                                 <div class="modal-body">
                                     <div style="margin-left: 2%; margin-right: 2%;">
@@ -230,6 +231,7 @@
                             </div>
                         </div>
                         <!-- end of modal for Delete -->
+                            {% endif %}
                         {% endfor %}
                     </tbody>
                 </table>  

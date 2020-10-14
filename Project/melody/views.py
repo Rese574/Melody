@@ -18,18 +18,18 @@ class MelodyIndexView(View):
 			if 'btnLogin'in request.POST:
 				email = request.POST.get("email")
 				password = request.POST.get("password")
-				user = Customer.objects.get(email = email, password = password)
-				userID = user.id
+				# user = Customer.objects.get(email = email, password = password)
+				# userID = user.id
 			return redirect('melody:melody_customerDashboard_view')
 
 class MelodyProductDashboardView(View):
 	def get(self, request):
 		# global userID
 		songs = Song.objects.all()
-		user = Customer.objects.get(id = userID)
+		# user = Customer.objects.get(id = userID)
 		context={
 			'songs' : songs,
-			'user' : user,
+			# 'user' : user,
 		}
 		return render(request, 'melody/productDashboard.html', context)
 	def post(self, request):
@@ -50,16 +50,16 @@ class MelodyProductDashboardView(View):
 				print(update_song)
 			elif 'btnDelete' in request.POST:
 				sid = request.POST.get("song-id")
-				song = Song.objects.filter(id = sid).delete()
+				song = Song.objects.filter(id = sid).update(isDeleted = True)
 				print('record deleted')
 			elif 'btnFilter' in request.POST:
 				startdate= request.POST.get("datepicker_from")
 				enddate =  request.POST.get("datepicker_to")
 				songs = Song.objects.filter(dateRelease__range=(startdate,enddate))
-				user = Customer.objects.get(id = userID)
+				# user = Customer.objects.get(id = userID)
 				context = {
 					'songs' : songs,
-					'user' : user,
+					# 'user' : user,
 				}
 				return render(request, 'melody/productDashboard.html', context)
 			return redirect('melody:melody_productDashboard_view')
@@ -68,10 +68,10 @@ class MelodyCustomerDashboardView(View):
 	def get(self, request):
 		# global userID
 		customers = Customer.objects.all()
-		user = Customer.objects.get(id = userID)
+		# user = Customer.objects.get(id = userID)
 		context = {
 			'customers' : customers,
-			'user' : user,
+			# 'user' : user,
 		}
 		return render(request, 'melody/customerDashboard.html', context)
 	def post(self, request):
@@ -85,21 +85,22 @@ class MelodyCustomerDashboardView(View):
 				add = request.POST.get("customer-add")
 				email = request.POST.get("customer-email")
 				contact = request.POST.get("customer-contact")
+				img = request.FILES["customer-profile"]
 				update_customer = Customer.objects.filter(id = cid).update(firstname = fname, lastname = lname,
-								birthday = date, address = add, email = email, contact = contact)
+								birthday = date, address = add, email = email, contact = contact, profilepicture = img)
 				print(update_customer)
 			elif 'btnDelete' in request.POST:
 				cid = request.POST.get("customer-id")
-				customer = Customer.objects.filter(id = cid).delete()
+				customer = Customer.objects.filter(id = cid).update(isDeleted = True)
 				print('record deleted')
 			elif 'btnFilter' in request.POST:
 				startdate= request.POST.get("datepicker_from")
 				enddate =  request.POST.get("datepicker_to")
 				customers = Customer.objects.filter(birthday__range=(startdate,enddate))
-				user = Customer.objects.get(id = userID)
+				# user = Customer.objects.get(id = userID)
 				context = {
 					'customers' : customers,
-					'user' : user,
+					# 'user' : user,
 				}
 				return render(request, 'melody/customerDashboard.html', context)
 			return redirect('melody:melody_customerDashboard_view')
@@ -117,7 +118,7 @@ class MelodyCustomerRegistrationView(View):
 			email = request.POST.get("email")
 			password = request.POST.get("password")
 			contact = request.POST.get("contact")
-			img = request.FILES('profilepicture',False)
+			img = request.FILES["profilepicture"]
 			form = Customer(firstname = fname, lastname = lname, birthday = bday, address = add, email = email,
 							password = password, contact = contact, profilepicture = img)
 			form.save()

@@ -9,19 +9,20 @@ class Customer(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length = 15)
     contact = models.CharField(max_length = 11)
-    profilepicture = models.ImageField(upload_to='images', null=True)
+    profilepicture = models.ImageField(upload_to='images', blank = True)
+    isDeleted = models.BooleanField(default = False)
     
     class Meta:
         db_table = "Customer"
 
 class Song(models.Model):
     songtitle = models.CharField(max_length = 100)
-    songImage = models.ImageField(null=True, blank=True, upload_to="img/")
     genre = models.CharField(max_length = 100)
     artist = models.CharField(max_length = 100)
     dateRelease = models.DateField()
     producer = models.CharField(max_length = 100)
     songwriter = models.CharField(max_length = 100)
+    isDeleted = models.BooleanField(default = False)
     # coverphoto = models.ImageField(upload_to='images', null=True, blank=True)
 
     class Meta:

@@ -105,7 +105,8 @@
                 </thead>
                 <tbody>
                     {% for song in songs %}
-                    <tr>
+                        {% if song.isDeleted is False %}
+                    <tr> 
                         <th scope="row">{{song.songtitle}}</th>
                         <td class="center-txt">{{song.genre}}</td>
                         <td class="center-txt">{{song.artist}}</td>
@@ -113,6 +114,7 @@
                         <td class="center-txt"><a data-toggle="modal" href="#" class="button" data-target="#modalView-{{song.id}}"><i class="material-icons" style="color: black; font-size: 26px;">&#xe88f;</i></a>
                             <a data-toggle="modal" href="#" class="button" data-target="#modalDelete-{{song.id}}"><i class="material-icons" style="color: red; font-size:28px;">&#xe92b;</i></a>
                         </td>
+                        
                     </tr>
                     <!-- modal for View -->
                     <div class="modal fade" id="modalView-{{song.id}}" tabindex="-1" role="dialog" aria-hidden="true">
@@ -227,6 +229,7 @@
                         </div>
                     </div>
                     <!-- end of modal for Delete -->
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>  
