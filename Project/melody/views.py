@@ -85,14 +85,16 @@ class MelodyCustomerDashboardView(View):
 				add = request.POST.get("customer-add")
 				email = request.POST.get("customer-email")
 				contact = request.POST.get("customer-contact")
-				if 'profilepicture' in request.FILES:
-					profilepicture = 'images/'+str(request.FILES['profilepicture'])
-					print(profilepicture)
-				else:
-					# profilepicture = 'images/'+str(request.FILES['customer.profilepicture'])
-					profilepicture = request.FILES.get('images/avatar.png')
+				# if 'profilepicture' in request.FILES:
+				# 	profilepicture = 'images/'+str(request.FILES['profilepicture'])
+				# # 	print(profilepicture)
+				# else:
+				# 	profilepicture = request.FILES.get("customer.profilepicture")
+				# elif 'profilepicture' in request.FILES is None:
+				# 	# profilepicture = 'images/'+str(request.FILES['customer.profilepicture'])
+				# 	profilepicture = request.FILES.get('images/avatar.png')
 				update_customer = Customer.objects.filter(id = cid).update(firstname = fname, lastname = lname,
-								birthday = date, address = add, email = email, contact = contact, profilepicture = profilepicture)
+								birthday = date, address = add, email = email, contact = contact)
 				print(update_customer)
 			elif 'btnDelete' in request.POST:
 				cid = request.POST.get("customer-id")
@@ -108,13 +110,17 @@ class MelodyCustomerDashboardView(View):
 					'user' : user,
 				}
 				return render(request, 'melody/customerDashboard.html', context)
+			elif 'btnProfilePic' in request.POST:
+				cid = request.POST.get("customer-id")
+				profilepicture = 'images/'+str(request.FILES['profilepicture'])
+				update_customer = Customer.objects.filter(id = cid).update(profilepicture = profilepicture)
 			return redirect('melody:melody_customerDashboard_view')
 
 class MelodyCustomerRegistrationView(View):
 	def get(self, request):
 		return render(request, 'melody/customerRegister.html')
 	def post(self, request):
-		form = CustomerForm(request.POST)
+		form = CustomerForm(request.POST, request.FILES)
 		if form.is_valid():
 			fname = request.POST.get("firstname")
 			lname = request.POST.get("lastname")
@@ -131,7 +137,7 @@ class MelodyCustomerRegistrationView(View):
 			form = Customer(firstname = fname, lastname = lname, birthday = bday, address = add, email = email,
 							password = password, contact = contact, profilepicture = img)
 			form.save()
-			return redirect('melody:melody_customerDashboard_view')
+			return redirect('melody:melody_index_view')
 		else:
 			print(form.errors)
 			return HttpResponse("Form is invalid")

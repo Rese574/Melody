@@ -79,6 +79,39 @@
     vertical-align: 3px; 
     margin-left: 5px;
 }
+.picture-container {
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+.picture {
+  width: 106px;
+  height: 106px;
+  background-color: #999999;
+  border: 4px solid #CCCCCC;
+  color: #FFFFFF;
+  border-radius: 50%;
+  margin: 5px auto;
+  overflow: hidden;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+.picture:hover {
+  border-color: #2ca8ff;
+}
+.picture input[type="file"] {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0 !important;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.picture-src {
+  width: 100%;
+}
 </style>
 {% endblock headerinclude %}
 <!-- body -->
@@ -183,24 +216,29 @@
                                     <span aria-hidden="true" style="color: white;">&times;</span>
                                 </button>
                                 </div>
-                                <form id="updateSong" method="POST" enctype="multipart/form-data">
-                                {% csrf_token%}
+                        
                                 <div class="modal-body">
                                     <div style="margin-left: 2%; margin-right: 2%;">
-                                        <input type="text" name="customer-id" value = {{customer.id}} hidden>
-                                        <!-- image update -->
-                                <div class="card wizard-card" data-color="violet" id="wizardProfile">
-                                    <div class="picture-container">
-                                        <div class="picture" >
-                                            {% if customer.profilepicture.url is not null %}
-                                            <img src="{{customer.profilepicture.url}}" class="picture-src" id="wizardPicturePreview" title=""/>
-                                            {% else %}
-                                            <img src="{{user.profilepicture.url}}" class="circle">
-                                            {% endif %}
-                                            <input type="file" id="wizard-picture" name="profilepicture">
+                     <!-------------------------------------------- image update HEWP!!! ------------------------------------------------>
+                                
+                                <form id="updateSong" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                        <div class="picture-container">
+                                            <div class="picture" >
+                                                <img src="{{customer.profilepicture.url}}" class="picture-src" id="wizardPicturePreview">
+                                                <input type="file" id="profilepicture" name="profilepicture">
+                                             </div>
+                                            <h6>Choose Picture</h6>
                                         </div>
-                                      <h6>Choose Picture</h6>
-                                    </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="submit" id="btnProfilePic" name="btnProfilePic" class="btn btn-outline-primary shadow">Update Profile</button>
+                                        </div>
+                                    </form>
+
+                    <!-------------------------------------------- image update ------------------------------------------------>
+                            <form id="updateSong" method="POST" enctype="multipart/form-data">
+                                {% csrf_token%}
+                                <input type="text" name="customer-id" value = {{customer.id}} hidden>
                                         <!-- /image update -->
                                         <div class="row">
                                             <div class="form-group col">
@@ -231,14 +269,15 @@
                                                 <input type="number" class="form-control" placeholder="Contact no." name="customer-contact" value="{{customer.contact}}" onkeypress="if (this.value.length==11) {return false}">
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    
+                                
                                 <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
-                                <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
+                                    <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
+                                </div>
+                                </form>
                                 </div>
                             </div>
-                            </form>
                              </div>
                             </div>
                         </div>
