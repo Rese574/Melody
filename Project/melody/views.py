@@ -13,28 +13,28 @@ class MelodyIndexView(View):
 	def get(self, request):
 		return render(request, 'melody/index.html')
 	def post(self, request):
-		# global userID
+		global userID
 		if request.method == 'POST':
 			if 'btnLogin'in request.POST:
 				email = request.POST.get("email")
 				password = request.POST.get("password")
-				# user = Customer.objects.get(email = email, password = password)
-				# userID = user.id
+				user = Customer.objects.get(email = email, password = password)
+				userID = user.id
 			return redirect('melody:melody_customerDashboard_view')
 
 class MelodyProductDashboardView(View):
 	def get(self, request):
-		# global userID
+		global userID
 		songs = Song.objects.all()
-		# user = Customer.objects.get(id = userID)
+		user = Customer.objects.get(id = userID)
 		context={
 			'songs' : songs,
-			# 'user' : user,
+			'user' : user,
 		}
 		return render(request, 'melody/productDashboard.html', context)
 	def post(self, request):
 		if request.method == 'POST':
-			# global userID
+			global userID
 			if 'btnUpdate' in request.POST:
 				sid = request.POST.get("song-id")
 				title = request.POST.get("song-title")
@@ -56,26 +56,26 @@ class MelodyProductDashboardView(View):
 				startdate= request.POST.get("datepicker_from")
 				enddate =  request.POST.get("datepicker_to")
 				songs = Song.objects.filter(dateRelease__range=(startdate,enddate))
-				# user = Customer.objects.get(id = userID)
+				user = Customer.objects.get(id = userID)
 				context = {
 					'songs' : songs,
-					# 'user' : user,
+					'user' : user,
 				}
 				return render(request, 'melody/productDashboard.html', context)
 			return redirect('melody:melody_productDashboard_view')
 
 class MelodyCustomerDashboardView(View):
 	def get(self, request):
-		# global userID
+		global userID
 		customers = Customer.objects.all()
-		# user = Customer.objects.get(id = userID)
+		user = Customer.objects.get(id = userID)
 		context = {
 			'customers' : customers,
-			# 'user' : user,
+			'user' : user,
 		}
 		return render(request, 'melody/customerDashboard.html', context)
 	def post(self, request):
-		# global userID
+		global userID
 		if request.method == 'POST':
 			if 'btnUpdate' in request.POST:
 				cid = request.POST.get("customer-id")
@@ -85,9 +85,14 @@ class MelodyCustomerDashboardView(View):
 				add = request.POST.get("customer-add")
 				email = request.POST.get("customer-email")
 				contact = request.POST.get("customer-contact")
-				img = request.FILES["customer-profile"]
+				if 'profilepicture' in request.FILES:
+					profilepicture = 'images/'+str(request.FILES['profilepicture'])
+					print(profilepicture)
+				else:
+					# profilepicture = 'images/'+str(request.FILES['customer.profilepicture'])
+					profilepicture = request.FILES.get('images/avatar.png')
 				update_customer = Customer.objects.filter(id = cid).update(firstname = fname, lastname = lname,
-								birthday = date, address = add, email = email, contact = contact, profilepicture = img)
+								birthday = date, address = add, email = email, contact = contact, profilepicture = profilepicture)
 				print(update_customer)
 			elif 'btnDelete' in request.POST:
 				cid = request.POST.get("customer-id")
@@ -97,10 +102,10 @@ class MelodyCustomerDashboardView(View):
 				startdate= request.POST.get("datepicker_from")
 				enddate =  request.POST.get("datepicker_to")
 				customers = Customer.objects.filter(birthday__range=(startdate,enddate))
-				# user = Customer.objects.get(id = userID)
+				user = Customer.objects.get(id = userID)
 				context = {
 					'customers' : customers,
-					# 'user' : user,
+					'user' : user,
 				}
 				return render(request, 'melody/customerDashboard.html', context)
 			return redirect('melody:melody_customerDashboard_view')
@@ -118,7 +123,11 @@ class MelodyCustomerRegistrationView(View):
 			email = request.POST.get("email")
 			password = request.POST.get("password")
 			contact = request.POST.get("contact")
-			img = request.FILES["profilepicture"]
+			if 'profilepicture' in request.FILES:
+				img = request.FILES['profilepicture']
+				print(img)
+			else:
+				img = request.FILES.get('images/avatar.png')
 			form = Customer(firstname = fname, lastname = lname, birthday = bday, address = add, email = email,
 							password = password, contact = contact, profilepicture = img)
 			form.save()

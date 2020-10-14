@@ -9,7 +9,7 @@ class Customer(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length = 15)
     contact = models.CharField(max_length = 11)
-    profilepicture = models.ImageField(upload_to='images', blank = True)
+    profilepicture = models.ImageField(upload_to='images', default = 'images/avatar.png', blank = True)
     isDeleted = models.BooleanField(default = False)
     
     class Meta:
