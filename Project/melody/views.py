@@ -110,10 +110,11 @@ class MelodyCustomerDashboardView(View):
 					'user' : user,
 				}
 				return render(request, 'melody/customerDashboard.html', context)
-			elif 'btnProfilePic' in request.POST:
-				cid = request.POST.get("customer-id")
+			elif 'btnPic' in request.POST:
+				cid = request.POST.get("picture-id")
 				profilepicture = 'images/'+str(request.FILES['profilepicture'])
-				update_customer = Customer.objects.filter(id = cid).update(profilepicture = profilepicture)
+				update_picture = Customer.objects.filter(id = cid).update(profilepicture = profilepicture)
+				print(update_picture)
 			return redirect('melody:melody_customerDashboard_view')
 
 class MelodyCustomerRegistrationView(View):

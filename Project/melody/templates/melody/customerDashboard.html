@@ -219,10 +219,11 @@
                         
                                 <div class="modal-body">
                                     <div style="margin-left: 2%; margin-right: 2%;">
-                     <!-------------------------------------------- image update HEWP!!! ------------------------------------------------>
+                     <!-------------------------------------------- image update (FIXED NA MAAAAA!!!) ------------------------------------------------>
                                 
-                                <form id="updateSong" method="POST" enctype="multipart/form-data">
+                                <form id="updateSong" method="POST" autocomplete="off" enctype="multipart/form-data">
                                     {% csrf_token %}
+                                    <input type="text" name="picture-id" value = {{customer.id}} hidden>
                                         <div class="picture-container">
                                             <div class="picture" >
                                                 <img src="{{customer.profilepicture.url}}" class="picture-src" id="wizardPicturePreview">
@@ -231,7 +232,7 @@
                                             <h6>Choose Picture</h6>
                                         </div>
                                         <div class="modal-footer justify-content-center">
-                                            <button type="submit" id="btnProfilePic" name="btnProfilePic" class="btn btn-outline-primary shadow">Update Profile</button>
+                                            <button type="submit" id="btnPic" name="btnPic" class="btn btn-outline-primary shadow">Update Profile picture</button>
                                         </div>
                                     </form>
 
@@ -273,7 +274,7 @@
                                 
                                 <div class="modal-footer justify-content-center">
                                     <button type="button" class="btn btn-outline-secondary shadow" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update</button>
+                                    <button type="submit" id="btnUpdate" name="btnUpdate" class="btn btn-outline-primary shadow">Update Info</button>
                                 </div>
                                 </form>
                                 </div>
